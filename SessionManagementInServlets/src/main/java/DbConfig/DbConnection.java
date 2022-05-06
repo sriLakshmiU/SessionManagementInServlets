@@ -10,7 +10,7 @@ public class DbConnection {
 		Connection connection=null;
 		String url="jdbc:mysql://localhost:3306/SessionManagementInServlets";
 		String username="root";
-		String password="SRU020788";
+		String password="password";
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection(url,username,password);
