@@ -24,7 +24,6 @@ public class LoginServlet extends HttpServlet {
     	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession session = req.getSession();
     	session.setAttribute("username", req.getParameter("username"));
-    	resp.setContentType("text/html");
-    	resp.sendRedirect("jsp/LoginPage.jsp");
+    	req.getRequestDispatcher("jsp/LoginPage.jsp").forward(req, resp);
     }
 }

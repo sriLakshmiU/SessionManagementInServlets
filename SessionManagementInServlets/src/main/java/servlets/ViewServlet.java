@@ -23,15 +23,16 @@ public class ViewServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String username = (String)request.getSession().getAttribute("username");
+		String username = (String)session.getAttribute("username");
 		UserDao userDao = new UserDao();
 		User user = new User();
 		user = userDao.getUser(username);
 		session.setAttribute("user", user);
 		String firstName = user.getFirstName();
 		if(firstName==null) {
-			PrintWriter writer = response.getWriter();
-			writer.append("Please register.");
+			String error ="Invalid username. Please login again";
+			request.setAttribute("error",error);
+			request.getRequestDispatcher("jsp/InvalidUser.jsp").forward(request, response);
 		}
 		else {
 		response.setContentType("text/html");
